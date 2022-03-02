@@ -1,0 +1,23 @@
+{
+  "ProfileTitle": "Профиль",
+  "Name": "Имя",
+  "Update": "Обновить",
+  "Menu_Back": "Назад",
+  "Menu_Bill": "Счет",
+  "Menu_History": "История",
+  "Menu_Planning": "Планирование",
+  "Menu_NewRecord": "Запись",
+  "Menu_Categories": "Категории",
+  "Exit": "Выход",
+  "Registration": "Регистрация",
+  "Entry": "Вход",
+  "Data_changed": "Данные изменены",
+  "Enter_password": "Введите пароль",
+  "Enter_valid_email": "Введите корректный Email",
+  "Empty_email": "Поле Email не должно быть пустым",
+  "Bookkeeping": "Домашняя бухгалтерия",
+  "Password": "Пароль",
+  "Enter_name": "Введите имя"
+
+
+}

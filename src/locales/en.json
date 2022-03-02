@@ -1,0 +1,21 @@
+{
+  "ProfileTitle": "Profile",
+  "Name": "Name",
+  "Update": "Update",
+  "Menu_Back": "Back",
+  "Menu_Bill": "Bill",
+  "Menu_History": "History",
+  "Menu_Planning": "Planning",
+  "Menu_NewRecord": "Record",
+  "Menu_Categories": "Categories",
+  "Exit": "Exit",
+  "Registration": "Registration",
+  "Entry": "Entry",
+  "Data_changed": "Data changed",
+  "Enter_password": "Enter password",
+  "Enter_valid_email": "Please enter a valid Email",
+  "Empty_email": "Email field must not be empty",
+  "Bookkeeping": "Home bookkeeping",
+  "Password": "Password",
+  "Enter_name": "Enter_name"
+}
