@@ -51,5 +51,6 @@ export default {
 .padding li{
   padding: 10px 30px;
   vertical-align: middle;
+  cursor: pointer;
 }
 </style>

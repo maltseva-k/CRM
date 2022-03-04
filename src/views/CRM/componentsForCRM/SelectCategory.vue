@@ -4,6 +4,7 @@
       <option
         v-for="cat in category"
         :key="cat.id"
+        :value="cat.id"
         selected
       >
         {{ cat.title }}
@@ -20,17 +21,16 @@ export default {
     }
   },
   data: () => ({
-    selectCategory: []
+    selectCategory: [],
+    records: []
   }),
   mounted () {
     this.select = window.M.FormSelect.init(this.$refs.select)
-    console.log(this.category)
   },
   methods: {
-    changeCategory () {
-      console.log(this.selectCategory)
+    async changeCategory () {
+      this.$emit('selectedCategories', this.selectCategory)
     }
   }
-
 }
 </script>

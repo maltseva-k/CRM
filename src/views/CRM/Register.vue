@@ -9,7 +9,11 @@
             v-model="$v.email.$model"
             :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
           >
-          <label for="email">Email</label>
+          <label
+            for="email"
+          >
+            Email
+          </label>
           <small
             v-if="$v.email.$dirty && !$v.email.required"
             class="helper-text invalid"
@@ -62,8 +66,13 @@
         </div>
         <p>
           <label>
-            <input type="checkbox" v-model="agree" />
-            <span>С правилами согласен</span>
+            <input
+              type="checkbox"
+              v-model="agree"
+            />
+            <span>
+              С правилами согласен
+            </span>
           </label>
         </p>
       </div>
@@ -79,7 +88,8 @@
           </button>
         </div>
 
-        <p class="center">
+        <p class="center"
+        >
           Уже есть аккаунт?
           <router-link to="/login">Войти!</router-link>
         </p>
@@ -91,7 +101,7 @@
 import { email, required, minLength } from 'vuelidate/lib/validators'
 
 export default {
-  name: 'register',
+  name: 'Register',
   metaInfo () {
     return {
       title: this.$title('Registration')

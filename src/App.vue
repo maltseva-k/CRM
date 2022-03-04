@@ -22,10 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
-.firstDiv{
-  text-align: center;
-  color: #404040;
-}
+
 @import '~materialize-css/dist/css/materialize.min.css';
-@import './css/styleFromMinin.css';
+@import './css/style.css';
 </style>

@@ -10,9 +10,16 @@
 
     <loader v-if="loading"/>
 
-    <p class="center" v-else-if="!records.length">Записей пока нет. <router-link to="/record">Добавьте новую запись.</router-link></p>
+    <p
+      class="center"
+      v-else-if="!records.length">
+      Записей пока нет.
+      <router-link to="/record">
+        Добавьте новую запись.
+      </router-link></p>
 
     <section v-else>
+      <button @click="found">Искать</button>
       <div class="flex">
         <select-type
           :records="records"
@@ -20,6 +27,7 @@
         />
         <select-category
           :category="cats"
+          @selectedCategories="selectCategory"
         />
       </div>
       <history-table
@@ -41,14 +49,14 @@
 </template>
 
 <script>
-import paginationMixin from '../../mixins/paginationMixin'
-import historyTable from './componentsForCRM/historyTable'
+import PaginationMixin from '../../mixins/PaginationMixin'
+import HistoryTable from './componentsForCRM/HistoryTable'
 import { Pie } from 'vue-chartjs'
-import selectType from './componentsForCRM/selectType'
-import SelectCategory from './componentsForCRM/selectCategory'
+import SelectType from './componentsForCRM/SelectType'
+import SelectCategory from './componentsForCRM/SelectCategory'
 
 export default {
-  name: 'history',
+  name: 'History',
   metaInfo () {
     return {
       title: this.$title('Menu_History')
@@ -56,20 +64,25 @@ export default {
   },
   components: {
     SelectCategory,
-    historyTable,
-    selectType
+    HistoryTable,
+    SelectType
   },
   extends: Pie,
-  mixins: [paginationMixin],
+  mixins: [PaginationMixin],
   data: () => ({
     loading: true,
     records: [],
     remove: 1,
     cats: [],
-    filtRecords: []
+    filtRecords: [],
+    params: {
+      categoryForSearch: [],
+      typeRecordForSearch: '',
+      paginationCount: 5,
+      sortQuality: 'amount'
+    }
   }),
   async mounted () {
-    // this.records = await this.$store.dispatch('fetchRecords')
     const categories = await this.$store.dispatch('fetchCategories')
     this.cats = await this.$store.dispatch('fetchCategories')
     for (let i = 0; i < this.cats.length; i++) {
@@ -78,9 +91,7 @@ export default {
 
       this.records = this.records.concat(recordsArray)
     }
-
     this.setup(categories)
-
     this.loading = false
   },
   watch: {
@@ -108,12 +119,27 @@ export default {
   },
 
   methods: {
-    filter (re) {
-      if (re === 'income') {
+    async selectCategory (categoriesArray) {
+      this.params.categoryForSearch = categoriesArray
+      // console.log(this.params)
+      const rrr = await this.$store.dispatch('findRecords', this.params)
+      console.log('найдено: ' + rrr)
+      const recordFilt = []
+      for (let i = 0; i < categoriesArray.length; i++) {
+        const record = this.records.filter(record => record.categoryId === categoriesArray[i])
+        recordFilt.push(record)
+      }
+      this.records = recordFilt
+    },
+    async found () {
+      await this.$store.dispatch('searchRecord')
+    },
+    filter (typeOfRecords) {
+      if (typeOfRecords === 'income') {
         this.filtRecords = this.records.filter(record => record.type === 'income')
         return this.filtRecords
       }
-      if (re === 'outcome') {
+      if (typeOfRecords === 'outcome') {
         this.filtRecords = this.records.filter(record => record.type === 'outcome')
         return this.filtRecords
       }
@@ -135,7 +161,7 @@ export default {
       this.setupPagination(this.records.map(record => {
         return {
           ...record,
-          categoryName: categories.find(c => c.id === record.categoryId).title,
+          categoryName: categories.find(c => c.id === record.categoryId)?.title,
           typeClass: record.type === 'income' ? 'green' : 'red',
           typeText: record.type === 'income' ? 'Доход' : 'Расход'
         }

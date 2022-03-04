@@ -25,7 +25,7 @@ const router = new Router({
     {
       path: '/detail/:cid/:id',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/detailRecord')
+      component: () => import('../views/CRM/DetailRecord')
     },
     {
       path: '/history',
@@ -51,6 +51,12 @@ const router = new Router({
       path: '/',
       meta: { layout: 'main', auth: true },
       component: () => import('../views/CRM/Home')
+    },
+    {
+      path: '*',
+      // redirect: '/'
+      meta: { layout: 'empty' },
+      component: () => import('../views/CRM/PageNotFound')
     }
   ]
 })

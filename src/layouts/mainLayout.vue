@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loading"/>
-    <div v-else class="app-main-layout">
+    <div v-else class="app-main-layout text-wrap">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
       <nav-bar @clickNavBar="isOpen = !isOpen"/>
@@ -62,3 +62,10 @@ export default {
 
 }
 </script>
+
+<style>
+/*временная залипуха скролла от тултипа*/
+::-webkit-scrollbar {
+  width: 0;
+}
+</style>

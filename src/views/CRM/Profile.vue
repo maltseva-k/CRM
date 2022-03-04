@@ -10,9 +10,13 @@
           v-model="$v.name.$model"
           id="description"
           type="text"
-          :class="{invalid: $v.name.dirty && !$v.name.required}"
+          :class="{invalid: $v.name.$dirty && !$v.name.required}"
         >
-        <label for="description" class="active">{{ 'Name' | localizeFilter }}</label>
+        <label
+          for="description"
+          class="active">
+          {{ 'Name' | localizeFilter }}
+        </label>
         <small
           v-if="$v.name.$dirty && !$v.name.required"
           class="helper-text invalid"
@@ -31,7 +35,9 @@
         </label>
       </div>
 
-      <button class="btn waves-effect waves-light" type="submit">
+      <button
+        class="btn waves-effect waves-light"
+        type="submit">
         {{ 'Update' | localizeFilter }}
         <i class="material-icons right">send</i>
       </button>

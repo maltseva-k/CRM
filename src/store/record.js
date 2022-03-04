@@ -26,18 +26,20 @@ export default {
       try {
         const uid = await dispatch('getUid')
         const records = []
-        let someRecords = await firebase.database().ref(`/users/${uid}/categories/${catId}/records`).once('value', snapshot => {
-          someRecords = snapshot.val() || {}
-          // return Object.keys(someRecords).map(key => ({ ...someRecords[key], id: key }))
-          Object.keys(someRecords).forEach(key => {
-            records.push({
-              amount: someRecords[key].amount,
-              categoryId: someRecords[key].categoryId,
-              date: someRecords[key].date,
-              description: someRecords[key].description,
-              type: someRecords[key].type,
-              id: key
-            })
+        const snapshot = await firebase
+          .database()
+          .ref(`/users/${uid}/categories/${catId}/records`)
+          .get()
+        const someRecords = snapshot.val() || {}
+        Object.keys(someRecords).forEach(key => {
+          console.log(key)
+          records.push({
+            amount: someRecords[key].amount,
+            categoryId: someRecords[key].categoryId,
+            date: someRecords[key].date,
+            description: someRecords[key].description,
+            type: someRecords[key].type,
+            id: key
           })
         })
 
@@ -52,10 +54,14 @@ export default {
         const uid = await dispatch('getUid')
         const id = allId.recordId
         const cid = allId.categoryId
-        let someRecord = (await firebase.database().ref(`/users/${uid}/categories/${cid}/records`).child(id).once('value', snapshot => {
-          someRecord = snapshot.val() || {}
-        })).val()
-        return { ...someRecord, id }
+        const snapshot = await firebase
+          .database()
+          .ref(`/users/${uid}/categories/${cid}/records`)
+          .child(id)
+          .get()
+        const someRecord = snapshot.val()
+        someRecord.id = snapshot.key
+        return someRecord
       } catch (e) {
         commit('setError', e)
         throw e
@@ -72,6 +78,41 @@ export default {
         commit('setError', e)
         throw e
       }
+    },
+    async searchRecord ({ dispatch }) {
+      const uid = await dispatch('getUid')
+      await firebase.database().ref(`/users/${uid}/categories/`).on('child_added', function (data) { console.log(data.val()) })
+    },
+    async findRecords ({ dispatch }, params) {
+      console.log(params)
+      const uid = await dispatch('getUid')
+      const id = params.categoryForSearch
+      let record = await firebase.database().ref(`/users/${uid}/categories/${id}/records`).once('value').then((snapshot) => {
+        record = snapshot.val()
+      })
+      console.log(record)
     }
   }
 }
+/*
+try {
+  const uid = await dispatch('getUid')
+  const records = []
+  const snapshot = await firebase
+    .database()
+    .ref(`/users/${uid}/categories/${catId}/records`)
+    .orderByChild('amount')
+    .equalTo(700)
+    .once('value')
+  const someRecords = snapshot.val() || {}
+  Object.keys(someRecords).forEach(key => {
+    console.log(key)
+    records.push({
+      amount: someRecords[key].amount,
+      categoryId: someRecords[key].categoryId,
+      date: someRecords[key].date,
+      description: someRecords[key].description,
+      type: someRecords[key].type,
+      id: key
+    })
+  })  */

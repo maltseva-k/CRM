@@ -6,9 +6,14 @@
 
     <loader v-if="loading"/>
 
-    <p v-else-if="!categories.length" class="center">
+    <p
+      v-else-if="!categories.length"
+      class="center">
       Категорий пока нет.
-    <router-link to="/categories">Добавить новую категорию.</router-link>
+    <router-link
+      to="/categories">
+      Добавить новую категорию.
+    </router-link>
     </p>
 
     <form class="form" v-else @submit.prevent="onSubmit">
@@ -56,10 +61,14 @@
           v-model.number="$v.amount.$model"
           :class="{invalid: $v.amount.$dirty && !$v.amount.minValue}"
         >
-        <label for="amount">Сумма</label>
+        <label
+          for="amount">
+          Сумма
+        </label>
         <span
           v-if="$v.amount.$dirty && !$v.amount.minValue"
-          class="helper-text invalid">Минимальное значение {{ $v.amount.$params.minValue.min }}
+          class="helper-text invalid">
+          Минимальное значение {{ $v.amount.$params.minValue.min }}
         </span>
       </div>
       <div class="input-field">
@@ -69,12 +78,19 @@
           v-model="$v.description.$model"
           :class="{invalid: $v.description.$dirty && !$v.description.required}"
         >
-        <label for="description">Описание</label>
+        <label
+          for="description">
+          Описание
+        </label>
         <span
           v-if="$v.description.$dirty && !$v.description.required"
-          class="helper-text invalid">Введите описание</span>
+          class="helper-text invalid">
+          Введите описание
+        </span>
       </div>
-      <button class="btn waves-effect waves-light" type="submit">
+      <button
+        class="btn waves-effect waves-light"
+        type="submit">
         Создать
         <i class="material-icons right">send</i>
       </button>
@@ -87,7 +103,7 @@ import { minValue, required } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'record',
+  name: 'Record',
   metaInfo () {
     return {
       title: this.$title('Menu_NewRecord')

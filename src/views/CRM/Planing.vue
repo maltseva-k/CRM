@@ -4,17 +4,24 @@
       <h3>Планирование</h3>
       <h4>{{ info.bill | currencyFilter('RUB') }}</h4>
     </div>
-    <Loader
+    <loader
       v-if="loading"
     />
     <p
-    v-else-if="!categories.length">Категорий пока нет. <router-link to="/categories">Добавить новую категорию.</router-link></p>
+    v-else-if="!categories.length"
+    >
+      Категорий пока нет.
+      <router-link to="/categories">
+        Добавить новую категорию.
+      </router-link>
+    </p>
     <section v-else>
-
       <div v-for="cat in categories"
            :key="cat.id">
         <p>
-          <strong>{{ cat.title }}:</strong>
+          <strong>
+            {{ cat.title }}:
+          </strong>
           {{ cat.spend  | currencyFilter('RUB') }} из {{ cat.limit  | currencyFilter('RUB') }}
         </p>
         <div class="progress" v-tooltip="cat.tooltip">
@@ -34,7 +41,7 @@ import Loader from './componentsForCRM/LoaderCRM'
 import { mapGetters } from 'vuex'
 import currencyFilter from '../../filters/CurrencyFilter'
 export default {
-  name: 'planing',
+  name: 'Planing',
   metaInfo () {
     return {
       title: this.$title('Menu_Planning')

@@ -4,9 +4,11 @@
       <h3>Категории</h3>
     </div>
     <section>
-      <Loader v-if="loading" />
+      <loader v-if="loading" />
       <div v-else class="row">
-        <category-create @created="addNewCategory"/>
+        <category-create
+          @created="addNewCategory"
+        />
         <category-edit
           v-if="categories.length"
           :categories="categories"
@@ -14,7 +16,9 @@
           @updated="updateCategories"
           @deletedCategory="deleteCategory"
         />
-        <p v-else>Категорий пока нет!</p>
+        <p v-else>
+          Категорий пока нет!
+        </p>
       </div>
     </section>
   </div>

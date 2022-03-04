@@ -17,17 +17,25 @@
                'green': record.type === 'income'
                }">
             <div class="card-content white-text center">
-              <p>Описание: {{ record.description }}</p>
-              <p>Сумма: {{ record.amount | currencyFilter }}</p>
-              <p>Категория: {{ record.categoryName}}</p>
+              <p>
+                Описание: {{ record.description }}
+              </p>
+              <p>
+                Сумма: {{ record.amount | currencyFilter }}
+              </p>
+              <p>
+                Категория: {{ record.categoryName}}
+              </p>
 
-              <small>{{  record.date | dateFilter('datetime') }}</small>
+              <small>
+                {{  record.date | dateFilter('datetime') }}
+              </small>
 
               <div class="containerForUpdate">
                 <div v-if="isVisiable">
                   <input
                     v-model="updatedDescription"
-                    placeholder="Введите описание"
+                    type="text"
                   >
                   <button
                     v-tooltip="'Принять изменения'"
@@ -50,7 +58,9 @@
         </div>
       </div>
     </div>
-    <p v-else>Запись с id={{$route.params.id}} не найдена.</p>
+    <p v-else>
+      Запись с id={{$route.params.id}} не найдена.
+    </p>
   </div>
 </template>
 
@@ -90,6 +100,7 @@ export default {
   methods: {
     openUpdatingRecord () {
       this.isVisiable = !this.isVisiable
+      this.updatedDescription = this.record.description
     },
     async updateRecord (record) {
       record.description = this.updatedDescription

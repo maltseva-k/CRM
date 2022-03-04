@@ -24,13 +24,15 @@
           <ul id="dropdown1" class="dropdown-content">
             <li>
               <router-link to="/profile" class="black-text">
-                <i class="material-icons">account_circle</i>{{ 'ProfileTitle' | localizeFilter }}
+                <i class="material-icons">account_circle</i>
+                {{'ProfileTitle' | localizeFilter }}
               </router-link>
             </li>
             <li class="divider" tabindex="-1"></li>
             <li>
               <a href="#" class="black-text" @click.prevent="logout">
-                <i class="material-icons">assignment_return</i>{{ 'Exit' | localizeFilter }}
+                <i class="material-icons">assignment_return</i>
+                {{ 'Exit' | localizeFilter }}
               </a>
             </li>
           </ul>

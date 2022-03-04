@@ -12,7 +12,8 @@
           Дата
           <i class="material-icons">unfold_more</i>
         </th>
-        <th @click="sortByCategory">Категория
+        <th @click="sortByCategory">
+          Категория
           <i class="material-icons">unfold_more</i>
         </th>
         <th>Тип</th>
