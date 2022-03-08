@@ -1,11 +1,11 @@
 <template>
-  <div class="input-field col s12 m6" style="background-color: cadetblue">
+  <div class="input-field col s12 m6">
     <select multiple ref="select" v-model="selectCategory" @change="changeCategory()">
+      <option disabled selected value="">Выберите категорию</option>
       <option
         v-for="cat in category"
         :key="cat.id"
-        :value="cat.id"
-        selected
+        :value="cat"
       >
         {{ cat.title }}
       </option>
@@ -21,14 +21,14 @@ export default {
     }
   },
   data: () => ({
-    selectCategory: [],
-    records: []
+    selectCategory: []
   }),
   mounted () {
     this.select = window.M.FormSelect.init(this.$refs.select)
+    this.selectCategory = this.category
   },
   methods: {
-    async changeCategory () {
+    changeCategory () {
       this.$emit('selectedCategories', this.selectCategory)
     }
   }

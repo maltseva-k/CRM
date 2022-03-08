@@ -23,8 +23,7 @@ export default {
   },
   methods: {
     filter () {
-      const typeOfRecords = this.recordFilter
-      this.$emit('filters', typeOfRecords)
+      this.$emit('filters', this.recordFilter)
     }
   }
 }

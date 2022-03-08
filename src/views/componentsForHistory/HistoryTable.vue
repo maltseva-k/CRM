@@ -63,10 +63,7 @@
 
 export default {
   props: {
-    records: {
-      type: Array,
-      required: true
-    }
+    records: []
   },
   data: () => ({
     click: true
@@ -99,28 +96,31 @@ export default {
       this.$emit('recordsBeforeDestroy', this.records) */
     },
     sortByCategory () {
-      this.click = !this.click
+      this.$emit('sortByCategory')
+      /* this.click = !this.click
       if (this.click) {
         this.records.sort((a, b) => a.categoryName.localeCompare(b.categoryName))
       } else {
         this.records.sort((a, b) => b.categoryName.localeCompare(a.categoryName))
-      }
+      } */
     },
     sortBySum () {
-      this.click = !this.click
+      this.$emit('sortBySum')
+      /* this.click = !this.click
       if (this.click) {
         this.records.sort((a, b) => a.amount - b.amount)
       } else {
         this.records.sort((a, b) => b.amount - a.amount)
-      }
+      } */
     },
     sortByDate () {
-      this.click = !this.click
+      this.$emit('sortByDate')
+      /* this.click = !this.click
       if (this.click) {
         this.records.sort((a, b) => a.date.localeCompare(b.date))
       } else {
         this.records.sort((a, b) => b.date.localeCompare(a.date))
-      }
+      } */
     }
   }/* ,
   computed: {

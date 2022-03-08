@@ -8,55 +8,64 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
+      name: 'login',
       path: '/login',
       meta: { layout: 'empty' },
-      component: () => import('../views/CRM/Login')
+      component: () => import('../views/Login')
     },
     {
+      name: 'register',
       path: '/register',
       meta: { layout: 'empty' },
-      component: () => import('../views/CRM/Register')
+      component: () => import('../views/Register')
     },
     {
+      name: 'categories',
       path: '/categories',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/Categories')
+      component: () => import('../views/Categories')
     },
     {
+      name: 'detailRecord',
       path: '/detail/:cid/:id',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/DetailRecord')
+      component: () => import('../views/DetailRecord')
     },
     {
+      name: 'history',
       path: '/history',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/History')
+      component: () => import('../views/History')
     },
     {
+      name: 'profile',
       path: '/profile',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/Profile')
+      component: () => import('../views/Profile')
     },
     {
+      name: 'planning',
       path: '/planning',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/Planing')
+      component: () => import('../views/Planing')
     },
     {
+      name: 'record',
       path: '/record',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/Record')
+      component: () => import('../views/Record')
     },
     {
+      name: 'main',
       path: '/',
       meta: { layout: 'main', auth: true },
-      component: () => import('../views/CRM/Home')
+      component: () => import('../views/Home')
     },
     {
       path: '*',
       // redirect: '/'
       meta: { layout: 'empty' },
-      component: () => import('../views/CRM/PageNotFound')
+      component: () => import('../views/PageNotFound')
     }
   ]
 })

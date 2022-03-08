@@ -11,7 +11,7 @@
       class="center">
       Категорий пока нет.
     <router-link
-      to="/categories">
+      :to="{ name: 'categories' }">
       Добавить новую категорию.
     </router-link>
     </p>
@@ -75,6 +75,8 @@
         <input
           id="description"
           type="text"
+          class="validate"
+          autocomplete="off"
           v-model="$v.description.$model"
           :class="{invalid: $v.description.$dirty && !$v.description.required}"
         >

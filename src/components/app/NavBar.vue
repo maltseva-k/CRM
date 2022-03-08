@@ -23,7 +23,7 @@
 
           <ul id="dropdown1" class="dropdown-content">
             <li>
-              <router-link to="/profile" class="black-text">
+              <router-link :to="{ name: 'profile' }" class="black-text">
                 <i class="material-icons">account_circle</i>
                 {{'ProfileTitle' | localizeFilter }}
               </router-link>

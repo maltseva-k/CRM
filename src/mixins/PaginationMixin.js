@@ -4,7 +4,7 @@ export default {
   data () {
     return {
       page: +this.$route.query.page || 1,
-      pageSize: 4,
+      pageSize: 5,
       pageCount: 0,
       allItems: [],
       items: []
@@ -17,6 +17,7 @@ export default {
       this.items = this.allItems[page - 1] || this.allItems[0]
     },
     setupPagination (allItems) {
+      this.pageSize = this.params.quantityOfRecords
       this.allItems = _.chunk(allItems, this.pageSize)
       this.pageCount = _.size(this.allItems)
       this.items = this.allItems[this.page - 1] || this.allItems[0]

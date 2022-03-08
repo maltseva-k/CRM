@@ -23,11 +23,20 @@
             type="text"
             v-model="$v.title.$model"
             :class="{invalid: $v.title.$dirty && !$v.title.required}"
+            autocomplete="off"
           >
-          <label for="name" class="active">Название</label>
+          <label
+            for="name"
+            class="active"
+          >
+            Название
+          </label>
           <span
             v-if="$v.title.$dirty && !$v.title.required"
-            class="helper-text invalid">Введите название категории</span>
+            class="helper-text invalid"
+          >
+            Введите название категории
+          </span>
         </div>
 
         <div class="input-field">
@@ -37,17 +46,33 @@
             v-model.number="$v.limit.$model"
             :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
           >
-          <label for="limit" class="active">Лимит</label>
+          <label
+            for="limit"
+            class="active"
+          >
+            Лимит
+          </label>
           <span
             v-if="$v.limit.$dirty && !$v.limit.minValue"
-            class="helper-text invalid">Минимальная величина {{ $v.limit.$params.minValue.min}}</span>
+            class="helper-text invalid"
+          >
+            Минимальная величина {{ $v.limit.$params.minValue.min}}
+          </span>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit">
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+        >
           Обновить
           <i class="material-icons right">send</i>
         </button>
-        <button class="btn waves-effect waves-light" type="button" style="margin-left: 10px" @click.prevent="deleteCategory(current)">
+        <button
+          class="btn waves-effect waves-light"
+          type="button"
+          style="margin-left: 10px"
+          @click.prevent="deleteCategory(current)"
+        >
           Удалить
           <i class="material-icons right">delete</i>
         </button>
@@ -120,7 +145,7 @@ export default {
         await this.$store.dispatch('updateCategory', categoryData)
         this.$message('Категория изменена')
         this.$emit('updated', categoryData)
-        this.$v.$reset()
+        // this.$v.$reset()
       } catch (e) {
       }
     },

@@ -1,4 +1,5 @@
 import firebase from 'firebase/compat/app'
+
 export default {
   actions: {
     async createRecord ({ dispatch, commit }, record) {
@@ -32,7 +33,7 @@ export default {
           .get()
         const someRecords = snapshot.val() || {}
         Object.keys(someRecords).forEach(key => {
-          console.log(key)
+          // console.log(key)
           records.push({
             amount: someRecords[key].amount,
             categoryId: someRecords[key].categoryId,
@@ -79,18 +80,55 @@ export default {
         throw e
       }
     },
-    async searchRecord ({ dispatch }) {
-      const uid = await dispatch('getUid')
-      await firebase.database().ref(`/users/${uid}/categories/`).on('child_added', function (data) { console.log(data.val()) })
-    },
     async findRecords ({ dispatch }, params) {
-      console.log(params)
       const uid = await dispatch('getUid')
-      const id = params.categoryForSearch
-      let record = await firebase.database().ref(`/users/${uid}/categories/${id}/records`).once('value').then((snapshot) => {
-        record = snapshot.val()
-      })
-      console.log(record)
+      const recordType = params.typeRecordForSearch
+      const categoryId = params.categoryForSearch
+      // const quantity = params.quantityOfRecords
+      const records = []
+      for (let i = 0; i < categoryId.length; i++) {
+        const catId = categoryId[i].id
+        if (recordType === 'all') {
+          const snapshot = await firebase
+            .database()
+            .ref(`/users/${uid}/categories/${catId}/records`)
+            .get()
+          const someRecords = snapshot.val()
+          if (someRecords !== null) {
+            Object.keys(someRecords).forEach(key => {
+              records.push({
+                amount: someRecords[key].amount,
+                categoryId: someRecords[key].categoryId,
+                date: someRecords[key].date,
+                description: someRecords[key].description,
+                type: someRecords[key].type,
+                id: key
+              })
+            })
+          }
+        } else {
+          const snapshot = await firebase
+            .database()
+            .ref(`/users/${uid}/categories/${catId}/records`)
+            .orderByChild('type')
+            .equalTo(recordType)
+            .get()
+          const someRecords = snapshot.val()
+          if (someRecords !== null) {
+            Object.keys(someRecords).forEach(key => {
+              records.push({
+                amount: someRecords[key].amount,
+                categoryId: someRecords[key].categoryId,
+                date: someRecords[key].date,
+                description: someRecords[key].description,
+                type: someRecords[key].type,
+                id: key
+              })
+            })
+          }
+        }
+      }
+      return records
     }
   }
 }

@@ -3,7 +3,7 @@
     <loader v-if="loading" />
     <div v-else-if="record">
       <div  class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link :to="{ name: 'history' }" class="breadcrumb">История</router-link>
         <a @click.prevent class="breadcrumb">
           {{ record.type === 'income' ? 'Доход' : 'Расход' }}
         </a>

@@ -11,6 +11,7 @@
           id="description"
           type="text"
           :class="{invalid: $v.name.$dirty && !$v.name.required}"
+          autocomplete="off"
         >
         <label
           for="description"
@@ -26,12 +27,13 @@
       </div>
       <div class="switch">
         <label>
-          English
-          <input
-            v-model="isRuLocale"
-            type="checkbox">
-          <span class="lever"></span>
           Русский
+          <input
+            v-model="isNotRuLocale"
+            type="checkbox"
+          >
+          <span class="lever"></span>
+          English
         </label>
       </div>
 
@@ -49,7 +51,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions } from 'vuex'
-import localizeFilter from '../../filters/localizeFilter'
+import localizeFilter from '../filters/localizeFilter'
 
 export default {
   metaInfo () {
@@ -59,7 +61,7 @@ export default {
   },
   data: () => ({
     name: '',
-    isRuLocale: true
+    isNotRuLocale: false
   }),
   validations: {
     name: { required }
@@ -81,7 +83,7 @@ export default {
       try {
         await this.updateInfo({
           name: this.name,
-          locale: this.isRuLocale ? 'ru-RU' : 'en-US'
+          locale: this.isNotRuLocale ? 'en-US' : 'ru-RU'
         })
         this.$message(localizeFilter('Data_changed'))
       } catch (e) {}

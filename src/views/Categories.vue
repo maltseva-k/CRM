@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import CategoryCreate from './CategoriesComponents/CategoryCreate'
-import CategoryEdit from './CategoriesComponents/CategoryEdit'
+import CategoryCreate from './componentsForCategories/CategoryCreate'
+import CategoryEdit from './componentsForCategories/CategoryEdit'
 
 export default {
   name: 'categories',

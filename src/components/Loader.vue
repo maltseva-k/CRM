@@ -1,5 +1,5 @@
 <template>
-  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  <div class="lds-ring position_center"><div></div><div></div><div></div><div></div></div>
 </template>
 
 <style>
@@ -8,6 +8,12 @@
   position: relative;
   width: 80px;
   height: 80px;
+}
+
+.position_center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 .lds-ring div {
   box-sizing: border-box;

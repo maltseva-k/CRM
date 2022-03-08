@@ -58,7 +58,7 @@
 
         <p class="center">
           Нет аккаунта?
-          <router-link to="/register">Зарегистрироваться</router-link>
+          <router-link :to="{ name: 'register' }">Зарегистрироваться</router-link>
         </p>
       </div>
     </form>
@@ -67,7 +67,7 @@
 <script>
 
 import { email, required, minLength } from 'vuelidate/lib/validators'
-import messages from '../../utils/messages'
+import messages from '../utils/messages'
 import { getAuth } from 'firebase/auth'
 
 export default {

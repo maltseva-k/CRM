@@ -8,6 +8,7 @@
             type="text"
             v-model="$v.email.$model"
             :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
+            autocomplete="off"
           >
           <label
             for="email"
@@ -91,7 +92,7 @@
         <p class="center"
         >
           Уже есть аккаунт?
-          <router-link to="/login">Войти!</router-link>
+          <router-link :to="{ name: 'login' }">Войти!</router-link>
         </p>
       </div>
     </form>
@@ -144,7 +145,7 @@ export default {
       }
       try {
         await this.$store.dispatch('registerUser', formData)
-        this.$router.push('/atHome')
+        this.$router.push({ name: 'main' })
       } catch (e) {}
     }
   }
