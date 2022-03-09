@@ -19,6 +19,8 @@
   box-sizing: border-box;
   display: block;
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 64px;
   height: 64px;
   margin: 8px;

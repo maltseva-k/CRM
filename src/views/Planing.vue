@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Loader from './componentsForHistory/LoaderCRM'
+
 import { mapGetters } from 'vuex'
 import currencyFilter from '../filters/CurrencyFilter'
 export default {
@@ -46,9 +46,6 @@ export default {
     return {
       title: this.$title('Menu_Planning')
     }
-  },
-  components: {
-    Loader
   },
   data: () => ({
     categories: [],
