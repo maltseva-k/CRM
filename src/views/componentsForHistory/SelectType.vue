@@ -1,5 +1,5 @@
 <template>
-  <div class="input-field col s12 m6">
+  <div class="input-field col s12 m4 l8">
     <select ref="select" v-model="recordFilter" @change="filter()">
       <option value="all">Все записи</option>
       <option value="income">Только доходы</option>

@@ -36,7 +36,7 @@
         @sortByDate="sortByDate"
         @sortByCategory="sortByCategory"
       />
-      <div class="paginate">
+      <div class="pagination">
         <Paginate
           v-model="page"
           :page-count="pageCount"
@@ -45,7 +45,7 @@
           :next-text="'Вперед'"
           :container-class="'pagination'"
           :page-class="'waves-effect'"
-          style="text-align: center"
+          class="paginate"
         />
         <select-page-count
         @changeCount="changeCount"
@@ -269,13 +269,27 @@ export default {
   width: 90%
 }
 
-.paginate {
+.pagination {
   display: flex;
   justify-content: space-between;
-  width: 95%
+  width: 95%;
+  vertical-align: middle;
 }
 
-.paginate .page_count_select {
-  width: 150px;
+.paginate {
+  text-align: center;
+  flex-basis: auto;
+  vertical-align: center;
+  padding-top: 17px;
+  justify-content: center;
 }
+
+.page_count_select {
+  padding-top: 10px;
+  padding-bottom: 0;
+  flex-basis: 250px;
+  vertical-align: middle;
+  justify-content: end;
+}
+
 </style>
