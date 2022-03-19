@@ -6,6 +6,7 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
+  base: '/Money-Keeper/',
   routes: [
     {
       name: 'login',
