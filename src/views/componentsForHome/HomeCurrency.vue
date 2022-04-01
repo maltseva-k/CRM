@@ -32,9 +32,10 @@
 
 <script>
 export default {
-  props: ['rates', 'date'],
+  props: ['rates'],
   data: () => ({
-    currencies: ['RUB', 'USD', 'EUR']
+    currencies: ['RUB', 'USD', 'EUR'],
+    date: new Date()
   }),
   methods: {
     getCorrectRates (cur) {

@@ -24,8 +24,16 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchCurrency () {
-      const res = await fetch('http://data.fixer.io/api/latest?access_key=7a6dc762f41771d2e14717db303967cf&symbols=USD,EUR,RUB')
-      return await res.json()
+      // Вместо запроса возвращаем промис со статикой, т.к. не https-запрос не уходит
+      /* const res = await fetch('http://data.fixer.io/api/latest?access_key=7a6dc762f41771d2e14717db303967cf&symbols=USD,EUR,RUB')
+      return await res.json() */
+      return Promise.resolve({
+        base: 'EUR',
+        date: '2022-04-01',
+        rates: { USD: 1.105953, EUR: 1, RUB: 91.871702 },
+        success: true,
+        timestamp: 1648811883
+      })
     }
   },
   modules: {

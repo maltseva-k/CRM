@@ -18,7 +18,6 @@
 
       <home-currency
         :rates="currency.rates"
-        :date="currency.date"
       />
 
     </div>
